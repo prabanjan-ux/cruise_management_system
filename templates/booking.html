@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cruise Paradise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}" />
+</head>
+
+<body>
+    <header>Cruise Paradise</header>
+    <nav>
+        <a href="{{ url_for('passenger') }}">Passenger</a>
+        <a href="{{ url_for('booking') }}">Booking</a>
+        <a href="{{ url_for('feedback') }}">Feedback</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+    <section class="cruise-section">
+        <div class="title-button">
+            <button>Available Cruise</button>
+        </div>
+
+        {% for cruise in cruises %}
+        <div class="featured-cruise">
+            <div class="image">
+                <img src="{{ url_for('static', filename=cruise.image_url) }}" alt="{{ cruise.cruisename }}">
+
+
+            </div>
+            <div class="details">
+                <div>
+                    <div class="top-row">
+                        <div class="dates">{{ cruise.departure_date }} ➞ {{ cruise.arrival_date }}</div>
+                    </div>
+                    <div class="route">{{ cruise.departure_port }} - {{ cruise.arrival_port }}</div>
+                    <div class="info">
+                        <span>Duration:</span> {{ cruise.duration_of_days }} days
+                    </div>
+                    <div class="info description">
+                        {{ cruise.description }}
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="empress">🛳️ {{ cruise.cruisename }}</div>
+<form action="{{ url_for('payment') }}" method="POST">
+    <input type="hidden" name="cruise_id" value="{{ cruise.cruise_id }}">
+    <button type="submit" class="price-btn">Book Now</button>
+</form>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+</body>
+
+</html>

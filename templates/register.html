@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+
+  <header>
+    <div class="branding">Cruise Paradise</div>
+  </header>
+
+  <div class="register-container">
+    <div class="register-box">
+      <form action="/register" method="post">
+        <div class="input-group">
+          <label for="name">Name:</label>
+          <input type="text" name="name" placeholder="Enter Name" required>
+        </div>
+        <div class="input-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="input-group">
+          <label for="confirm_password">Confirm:</label>
+          <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+        <button type="submit">Register</button>
+
+        <div class="bottom-links">
+          <a href="{{ url_for('passenger_login') }}">Already have an account? Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

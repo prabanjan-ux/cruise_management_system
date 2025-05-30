@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
+</head>
+<body>
+  <header>
+    <div class="branding">Cruise Paradise</div>
+  </header>
+
+  <div class="form-container">
+    <div class="form-box">
+      <div class="center-box">
+      <span class="highlight-box">Admin login</span>
+    </div>
+      
+      <form action="/admin_login" method="post">
+        <div class="input-group">
+          <label for="admin_id">Admin ID</label>
+          <input type="text" name="admin_id" id="admin_id" required>
+        </div>
+        <div class="input-group">
+          <label for="admin_password">Password</label>
+          <input type="password" name="admin_password" id="admin_password" required>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

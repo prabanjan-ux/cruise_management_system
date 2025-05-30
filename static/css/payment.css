@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #e0f2f1, #ffffff);
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #004d61;
+  margin-bottom: 30px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+.info-row label {
+  font-weight: bold;
+  color: #004d61;
+  width: 45%;
+}
+
+.info-row p, .info-row .inline-input {
+  margin: 0;
+  width: 50%;
+  text-align: right;
+  color: #333;
+}
+
+.inline-input {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inline-input input[type="number"] {
+  width: 80px;
+  padding: 6px;
+  font-size: 14px;
+}
+
+.payment-methods {
+  margin-top: 20px;
+}
+
+.payment-methods label {
+  display: inline-block;
+  margin-right: 15px;
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.payment-methods input[type="radio"] {
+  display: none;
+}
+
+.payment-methods input[type="radio"]:checked + label {
+  background-color: #004d61;
+  color: white;
+  border-color: #004d61;
+}
+
+.total {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button {
+  background-color: #004d61;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 25px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #006a85;
+}

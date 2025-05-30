@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: url('/static/images/cruise.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    backdrop-filter: brightness(0.7);
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #00384d;
+    color: #a3e4f3;
+    padding: 20px;
+    text-align: center;
+    font-size: 32px;
+    font-family: 'Playfair Display', serif;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #004d66;
+    padding: 10px 0;
+    gap: 80px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #a3e4f3;
+}
+
+.cruise-section {
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 1200px;
+    margin: 50px auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 1.5s ease;
+}
+
+.title-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    animation: fadeSlide 1.2s ease;
+}
+
+.title-button button {
+    background-color: #004455;
+    color: #00c4ff;
+    font-size: 22px;
+    padding: 12px 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.featured-cruise {
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    max-width: 1100px;
+    margin-inline: auto;
+}
+
+.featured-cruise .image {
+    flex: 1;
+    min-height: 300px;
+}
+
+.featured-cruise .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-cruise .details {
+    flex: 2;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.featured-cruise .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.featured-cruise .dates {
+    font-weight: bold;
+    color: #004455;
+    font-size: 16px;
+}
+
+.featured-cruise .route {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.featured-cruise .info {
+    font-size: 15px;
+    color: #555;
+}
+
+.featured-cruise .info span {
+    font-weight: bold;
+    color: #333;
+}
+
+.featured-cruise .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    align-items: center;
+}
+
+.featured-cruise .empress {
+    background-color: #fff0f9;
+    color: #004455;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: 2px solid #004455;
+}
+
+.featured-cruise .price-btn {
+    background-color: #004455;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.featured-cruise .price-btn:hover {
+    background-color: #002e3e;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideUp 1s ease forwards;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #00384d;
+}
+
+.card-body p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.card-body button {
+    background: #0044aa;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.card-body button:hover {
+    background: #002e80;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-cruise {
+        flex-direction: column;
+    }
+
+    .featured-cruise .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,152 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: url('/static/images/cruise.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+.branding {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  padding: 1rem;
+  background-color: #00384d;
+  color: #a3e4f3;
+}
+
+header {
+  background-color: #004d66;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(15, 17, 20, 0.5);
+  color: black;
+}
+
+.highlight-box {
+  font-family: 'Playfair Display', serif;
+  display: inline-block;
+  background-color: #00526e;
+  color: #a3e4f3;
+  padding: 12px 60px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.4rem;
+  text-align: center;
+  display: block;
+}
+
+.center-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+form input{
+  width: 97%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(97, 97, 97, 0.9);
+  color: #fafafa;
+}
+
+form select {
+  width: 99.9%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(97, 97, 97, 0.9);
+  color: #fafafa;
+}
+
+form input.half-width {
+  width: 93.8%;
+}
+
+form input::placeholder {
+  color: #ffffff;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+button {
+  margin-top: 25px;
+  width: 30%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: rgb(125, 117, 117);
+}

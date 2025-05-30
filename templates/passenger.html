@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Passenger</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/passenger.css') }}">
+</head>
+<body>
+
+  <header>
+    <div class="branding">Cruise Paradise</div>
+    <nav>
+      <ul>
+         <li><a href="{{ url_for('passenger') }}">Passenger</a></li>
+         <li><a href="{{ url_for('booking') }}">Booking</a></li>
+         <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="center-box">
+      <span class="highlight-box">Passenger</span>
+    </div>
+
+    <form id="passengerForm" action="{{ url_for('passenger') }}" method="post">
+
+      <label for="name">Name:</label>
+      <input type="text" name="name" placeholder="e.g. Rahul" required>
+
+      <label for="passport_number">Passport Number:</label>
+      <input type="text" name="passport_number" placeholder="e.g. A12345678" required>
+
+      <div class="row">
+        <div class="column">
+          <label for="country">Country:</label>
+          <input type="text" name="country" class="half-width" placeholder="e.g. India" required>
+        </div>
+        <div class="column">
+          <label for="phone_number">Phone Number:</label>
+          <input type="text" name="phone_number" class="half-width" placeholder="+91 9876543210" required>
+        </div>
+      </div>
+
+      <label for="gender">Gender:</label>
+      <select name="gender" required>
+        <option value="" disabled selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Others">Others</option>
+      </select>
+
+      <div class="center-box">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+  </main>
+
+</body>
+</html>

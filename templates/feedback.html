@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Submit Feedback</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+</head>
+
+<body>
+  <header>
+    <div class="branding">Cruise Paradise</div>
+    <nav>
+      <ul>
+         <li><a href="{{ url_for('passenger') }}">Passenger</a></li>
+         <li><a href="{{ url_for('booking') }}">Booking</a></li>
+         <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="center-box">
+      <span class="highlight-box">Feedback</span>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div id="submitMessage" class="flash-message">
+          {% for category, message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" action="{{ url_for('feedback') }}">
+      <label for="passenger_id">Passenger ID:</label>
+      <input type="number" name="passenger_id" placeholder="Enter your Passenger ID" required>
+
+      <label for="message">Your Feedback:</label>
+      <textarea name="message" rows="4" placeholder="Write your feedback here..." required></textarea>
+
+      <label for="rating">Rating (1 to 5):</label>
+      <select name="rating" required>
+        <option value="">Select</option>
+        <option value="1">1 - Poor</option>
+        <option value="2">2 - Fair</option>
+        <option value="3">3 - Good</option>
+        <option value="4">4 - Very Good</option>
+        <option value="5">5 - Excellent</option>
+      </select>
+
+      <div class="center-box">
+        <button type="submit">Submit Feedback</button>
+      </div>
+    </form>
+
+
+  </main>
+
+  <script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
+</body>
+</html>

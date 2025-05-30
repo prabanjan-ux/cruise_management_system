@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cruise Paradise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="branding">Cruise Paradise</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <div class="hero-content">
+        <h1>Wave Around the World.</h1>
+        <p>Easily search and book your dream cruise online. Experience unforgettable journeys with our exceptional cruise packages.</p>
+        <a href="{{ url_for('passenger_login') }}" class="btn">Login</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <h2>Featured Cruises</h2>
+    <p>Discover our handpicked selection of popular cruises.</p>
+  </section>
+
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

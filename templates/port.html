@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Port</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/port.css') }}">
+</head>
+<body>
+  <header>
+    <div class="branding">Cruise Paradise</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('cruise') }}">Cruise</a></li>
+        <li><a href="{{ url_for('port') }}">Ports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="center-box">
+      <span class="highlight-box">Ports</span>
+    </div>
+
+    <form action="{{ url_for('port') }}" method="post">
+
+      <label for="port_name">Port Name:</label>
+      <input type="text" name="port_name" placeholder="e.g. Miami" required>
+
+      <label for="country">Country:</label>
+      <input type="text" name="country" placeholder="e.g. India" required>
+
+      <div class="center-box">
+        <button type="submit">Add Port</button>
+      </div>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+  </main>
+
+  <script src="{{ url_for('static', filename='js/port.js') }}"></script>
+</body>
+</html>

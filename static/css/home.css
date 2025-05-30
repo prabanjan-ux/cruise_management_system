@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #e0f7fa;
+  color: #ffffff;
+}
+
+/* Stylish Cruise Paradise Title */
+.branding {
+  text-align: center;
+  font-family: 'Playfair Display',serif;
+  font-size: 3.5rem;
+  padding: 1rem;
+  background-color: #00384d;
+  color: #a3e4f3;
+}
+
+/* Navigation */
+header {
+  background-color: #00384d;
+  padding: 1rem 0;
+}
+#navToggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+/* Add this in your home.css */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background-color: #1abc9c;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  background-color: #148f77;
+  border-radius: 5px;
+}
+
+
+/* Hero Section with background image */
+.hero {
+  position: relative;
+  background: url('/static/images/cruise.jpg') no-repeat center center/cover;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #e0f7fa;
+}
+
+.btn {
+  background-color: #00bcd4;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+
+.btn:hover {
+  background-color: #0097a7;
+}
+
+/* Featured Cruises */
+.featured {
+  text-align: center;
+  padding: 3rem 10%;
+  color: #003844;
+  background-color: #e0f7fa;
+}
+
+.featured h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured p {
+  font-size: 1rem;
+}

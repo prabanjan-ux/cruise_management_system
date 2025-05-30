@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Cruise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cruise.css') }}">
+</head>
+<body>
+  <header>
+    <div class="branding">Cruise Paradise</div>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('cruise') }}">Cruise</a></li>
+        <li><a href="{{ url_for('port') }}">Ports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="center-box">
+      <span class="highlight-box">Cruise</span>
+    </div>
+
+    <form action="{{ url_for('cruise') }}" method="post">
+
+      <label for="cruise_name">Cruise Name:</label>
+      <select name="cruise_name" required>
+        <option value="" disabled selected>Select a cruise</option>
+        <option value="Ocean Explorer">Ocean Explorer</option>
+        <option value="Caribbean Queen">Caribbean Queen</option>
+        <option value="Pacific Dream">Pacific Dream</option>
+        <option value="Arctic Voyager">Arctic Voyager</option>
+        <option value="Mediterranean Magic">Mediterranean Magic</option>
+      </select>
+
+      <div class="row">
+<select name="departure_port" required>
+  <option value="" disabled selected>Select a departure port</option>
+  {% for port in port_names %}
+    <option value="{{ port }}">{{ port }}</option>
+  {% endfor %}
+</select>
+
+
+
+
+        <div class="column">
+          <label for="departure_date">Departure Date:</label>
+          <input type="date" name="departure_date" required />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <label for="arrival_port">Arrival Port:</label>
+<select name="arrival_port" required>
+  <option value="" disabled selected>Select an arrival port</option>
+  {% for port in port_names %}
+    <option value="{{ port }}">{{ port }}</option>
+  {% endfor %}
+</select>
+
+
+        </div>
+
+        <div class="column">
+          <label for="arrival_date">Arrival Date:</label>
+          <input type="date" name="arrival_date" required />
+        </div>
+      </div>
+
+      <label for="duration_days">Duration (days):</label>
+      <input type="text" name="duration_days" required />
+
+      <div class="center-box">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+    <div id="submitMessage">Cruise submitted successfully!</div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/cruise.js') }}"></script>
+</body>
+</html>
