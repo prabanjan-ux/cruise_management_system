@@ -18,31 +18,61 @@ body, html {
 }
 
 header {
-  background-color: #004d66;
+  background-color: #0e4659;
+  padding-bottom: 1.1%;
 }
 
 nav ul {
+  gap: 100px;
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
-  gap: 100px;
+  padding: 10px 0;
+  margin: -5px;
+  background-color: #1abc9c;
+
 }
 
 nav ul li a {
-  color: white;
+  display: flex;                 /* Enables flexbox */
+  align-items: center;           /* Vertical centering */
+  justify-content: center;       /* Optional: horizontal centering */
+  height: 30px;                  /* Set desired nav height */
+  padding: 0 15px;               /* Horizontal spacing */
+  color: black;
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 12px;
+  font-size: 1rem;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  margin: -5px;
 }
+
 
 nav ul li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+.logout-form {
+    position: absolute;
+    top: -7px;
+    right: 20px;
+}
 
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-size: 15px;
+  white-space: nowrap;  /* Prevent text from wrapping */
+    min-width: 80px;       /* Ensure enough width */
+    text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.logout-button:hover {
+    background-color: #c0392b;
+}
 main {
   max-width: 600px;
   margin: 40px auto;
@@ -58,13 +88,15 @@ main {
   display: inline-block;
   background-color: #00526e;
   color: #a3e4f3;
-  padding: 12px 60px;
+  padding: 12px 6px;
   border-radius: 7px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 7px;
   font-size: 1.4rem;
+  justify-self: center;
   text-align: center;
   display: block;
+  width: 150px;
 }
 
 .center-box {

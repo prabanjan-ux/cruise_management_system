@@ -40,8 +40,15 @@
       <p>{{ cruise.duration_of_days }} days</p>
     </div>
 
+    <div class="info-row">
+      <label>Cost per Passenger:</label>
+      <p>₹{{ cruise.cost }}</p>
+    </div>
+
     <form action="{{ url_for('confirm_payment') }}" method="POST">
       <input type="hidden" name="cruise_id" value="{{ cruise.cruise_id }}" />
+      <input type="hidden" name="cost" id="cost" value="{{ cruise.cost }}" />
+      <input type="hidden" name="total_amount" id="total_amount" value="{{ cruise.cost }}" />
 
       <div class="info-row">
         <label for="passengers">Number of Passengers:</label>
@@ -49,7 +56,7 @@
       </div>
 
       <div class="total">
-        Total Amount: ₹<span id="amount">3000</span>
+        Total Amount: ₹<span id="amount">{{ cruise.cost }}</span>
       </div>
 
       <div class="payment-methods">
@@ -66,11 +73,16 @@
   <script>
     const passengersInput = document.getElementById('passengers');
     const amountSpan = document.getElementById('amount');
-    const pricePerPerson = 3000;
+    const costInput = document.getElementById('cost');
+    const totalAmountInput = document.getElementById('total_amount');
+
+    const pricePerPerson = parseFloat(costInput.value);
 
     passengersInput.addEventListener('input', () => {
-      const total = pricePerPerson * parseInt(passengersInput.value || 1);
-      amountSpan.textContent = total;
+      const count = parseInt(passengersInput.value || 1);
+      const total = pricePerPerson * count;
+      amountSpan.textContent = total.toFixed(2);
+      totalAmountInput.value = total.toFixed(2);
     });
   </script>
 </body>

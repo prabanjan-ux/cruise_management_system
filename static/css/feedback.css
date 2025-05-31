@@ -19,28 +19,60 @@ body, html {
 
 header {
   background-color: #004d66;
+  padding-bottom: 1.1%;
 }
 
 nav ul {
+  gap: 100px;
   list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   justify-content: center;
-  gap: 100px;
+  padding: 10px 0;
+  margin: -5px;
+  background-color: #1abc9c;
+
 }
 
 nav ul li a {
-  color: white;
+  display: flex;                 /* Enables flexbox */
+  align-items: center;           /* Vertical centering */
+  justify-content: center;       /* Optional: horizontal centering */
+  height: 30px;                  /* Set desired nav height */
+  padding: 0 15px;               /* Horizontal spacing */
+  color: black;
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 12px;
+  font-size: 1rem;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  margin: -5px;
 }
 
 nav ul li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+.logout-form {
+    position: absolute;
+    top: -7px;
+    right: 20px;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  font-weight: bold;
+  padding: 6px 14px;
+  font-size: 15px;
+  white-space: nowrap;  /* Prevent text from wrapping */
+    min-width: 80px;       /* Ensure enough width */
+    text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
 }
 
 main {
@@ -78,11 +110,21 @@ form label {
   margin-top: 15px;
   font-weight: bold;
 }
-
-form input,
 form textarea,
+form input{
+ width: 97%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(97, 97, 97, 0.9);
+  color: #fafafa;
+}
+
 form select {
-  width: 98%;
+  width: 99.3%;
   padding: 8px;
   margin-top: 5px;
   border-radius: 5px;

@@ -8,10 +8,11 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Configuring MySQL
-app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'Chitra@143'
 app.config['MYSQL_DATABASE'] = 'cruise_management'
+app.config['MYSQL_HOST'] = 'localhost'
+
 
 # Initialize MySQL
 mysql = MySQL(app)
@@ -170,18 +171,21 @@ def payment():
 
         cur = mysql.connection.cursor(dictionary=True)
         cur.execute("""
-            SELECT
-                c.cruisename,
-                dp.port_name AS departure_port,
-                ap.port_name AS arrival_port,
-                c.departure_date,
-                c.arrival_date,
-                c.duration_of_days
-            FROM cruise c
-            LEFT JOIN port dp ON c.departure_port_id = dp.port_id
-            LEFT JOIN port ap ON c.arrival_port_id = ap.port_id
-            WHERE c.cruise_id = %s
-        """, (cruise_id,))
+    SELECT
+        c.cruise_id,
+        c.cruisename,
+        dp.port_name AS departure_port,
+        ap.port_name AS arrival_port,
+        c.departure_date,
+        c.arrival_date,
+        c.duration_of_days,
+        c.cost
+    FROM cruise c
+    LEFT JOIN port dp ON c.departure_port_id = dp.port_id
+    LEFT JOIN port ap ON c.arrival_port_id = ap.port_id
+    WHERE c.cruise_id = %s
+""", (cruise_id,))
+
         cruise_details = cur.fetchone()
         cur.close()
 
@@ -195,9 +199,40 @@ def payment():
 
 @app.route('/confirm_payment', methods=['POST'])
 def confirm_payment():
-    # Do your payment confirmation logic here
-    flash('Payment successful. Enjoy your cruise!')
-    return redirect(url_for('passenger'))
+    cruise_id = request.form.get('cruise_id')
+    passengers = request.form.get('passengers')
+    total_amount = request.form.get('total_amount')
+    payment_method = request.form.get('payment_method')
+    passenger_id = session.get('passenger_id')
+
+    print("---- FORM DEBUG ----")
+    print("cruise_id:", cruise_id)
+    print("passengers:", passengers)
+    print("total_amount:", total_amount)
+    print("payment_method:", payment_method)
+    print("passenger_id (from session):", passenger_id)
+    print("---------------------")
+
+    if not all([cruise_id, passengers, total_amount, payment_method, passenger_id]):
+        flash("Incomplete booking data.")
+        return redirect(url_for('booking'))
+
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO booking (passenger_id, cruise_id, num_passengers, total_amount, payment_method)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (passenger_id, cruise_id, passengers, total_amount, payment_method))
+        mysql.connection.commit()
+        cur.close()
+
+        flash('Booking confirmed successfully!')
+    except Exception as e:
+        print("DB INSERT ERROR:", e)
+        flash(f"Database error: {str(e)}")
+
+    return redirect(url_for('booking'))
+
 
 
 
@@ -247,6 +282,8 @@ def cruise():
         departure_date = request.form['departure_date']
         arrival_date = request.form['arrival_date']
         duration_days = request.form['duration_days']
+        cost = request.form['cost']
+
 
         try:
             cur = mysql.connection.cursor(dictionary=True)
@@ -267,9 +304,9 @@ def cruise():
 
             # Insert into Cruise
             cur.execute("""
-                INSERT INTO cruise (cruisename, departure_port_id, arrival_port_id, departure_date, arrival_date, duration_of_days)
-                VALUES (%s, %s, %s, %s, %s, %s)
-            """, (cruise_name, departure_port_id, arrival_port_id, departure_date, arrival_date, duration_days))
+                INSERT INTO cruise (cruisename, departure_port_id, arrival_port_id, departure_date, arrival_date, duration_of_days, cost)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (cruise_name, departure_port_id, arrival_port_id, departure_date, arrival_date, duration_days, cost))
 
             mysql.connection.commit()
             cur.close()

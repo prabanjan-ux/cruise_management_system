@@ -10,14 +10,18 @@
 </head>
 
 <body>
-    <header>Cruise Paradise</header>
+    <header>Cruise Paradise
     <nav>
-        <a href="{{ url_for('passenger') }}">Passenger</a>
-        <a href="{{ url_for('booking') }}">Booking</a>
-        <a href="{{ url_for('feedback') }}">Feedback</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+      <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('cruise') }}">Cruise</a></li>
+        <li><a href="{{ url_for('port') }}">Ports</a></li>
+      </ul>
     </nav>
-
+        <form action="{{ url_for('logout') }}" method="POST" class="logout-form">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+    </header>
     <section class="cruise-section">
         <div class="title-button">
             <button>Available Cruise</button>
@@ -44,7 +48,7 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <div class="empress">🛳️ {{ cruise.cruisename }}</div>
+                    <div class="empress">🛳 {{ cruise.cruisename }}</div>
 <form action="{{ url_for('payment') }}" method="POST">
     <input type="hidden" name="cruise_id" value="{{ cruise.cruise_id }}">
     <button type="submit" class="price-btn">Book Now</button>

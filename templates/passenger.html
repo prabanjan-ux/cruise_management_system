@@ -9,12 +9,16 @@
 
   <header>
     <div class="branding">Cruise Paradise</div>
+
     <nav>
       <ul>
          <li><a href="{{ url_for('passenger') }}">Passenger</a></li>
          <li><a href="{{ url_for('booking') }}">Booking</a></li>
          <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
       </ul>
+      <form action="{{ url_for('logout') }}" method="POST" class="logout-form">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
     </nav>
   </header>
 
