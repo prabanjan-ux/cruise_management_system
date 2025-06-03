@@ -3,6 +3,8 @@ from flask_mysql_connector import MySQL
 from MySQLdb.cursors import DictCursor
 from werkzeug.security import generate_password_hash, check_password_hash
 
+import logging
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -171,69 +173,64 @@ def payment():
 
         cur = mysql.connection.cursor(dictionary=True)
         cur.execute("""
-    SELECT
-        c.cruise_id,
-        c.cruisename,
-        dp.port_name AS departure_port,
-        ap.port_name AS arrival_port,
-        c.departure_date,
-        c.arrival_date,
-        c.duration_of_days,
-        c.cost
-    FROM cruise c
-    LEFT JOIN port dp ON c.departure_port_id = dp.port_id
-    LEFT JOIN port ap ON c.arrival_port_id = ap.port_id
-    WHERE c.cruise_id = %s
-""", (cruise_id,))
+            SELECT
+                c.cruise_id,
+                c.cruisename,
+                dp.port_name AS departure_port,
+                ap.port_name AS arrival_port,
+                c.departure_date,
+                c.arrival_date,
+                c.duration_of_days,
+                c.cost
+            FROM cruise c
+            LEFT JOIN port dp ON c.departure_port_id = dp.port_id
+            LEFT JOIN port ap ON c.arrival_port_id = ap.port_id
+            WHERE c.cruise_id = %s
+        """, (cruise_id,))
 
         cruise_details = cur.fetchone()
+
+        # Fetch passengers for dropdown
+        cur.execute("SELECT passenger_id, name FROM passenger")
+        passengers = cur.fetchall()
         cur.close()
 
-        return render_template('payment.html', cruise=cruise_details)
+        return render_template('payment.html', cruise=cruise_details, passengers=passengers)
 
-    # If somehow someone lands here via GET
     flash('Invalid access to payment page.')
     return redirect(url_for('booking'))
 
 
-
 @app.route('/confirm_payment', methods=['POST'])
 def confirm_payment():
-    cruise_id = request.form.get('cruise_id')
-    passengers = request.form.get('passengers')
-    total_amount = request.form.get('total_amount')
-    payment_method = request.form.get('payment_method')
-    passenger_id = session.get('passenger_id')
-
-    print("---- FORM DEBUG ----")
-    print("cruise_id:", cruise_id)
-    print("passengers:", passengers)
-    print("total_amount:", total_amount)
-    print("payment_method:", payment_method)
-    print("passenger_id (from session):", passenger_id)
-    print("---------------------")
-
-    if not all([cruise_id, passengers, total_amount, payment_method, passenger_id]):
-        flash("Incomplete booking data.")
-        return redirect(url_for('booking'))
-
     try:
+        passenger_id = request.form.get('passenger_id')  # <-- changed here
+        cruise_id = request.form.get('cruise_id')
+        passengers = int(request.form.get('passengers'))
+        total_amount = float(request.form.get('total_amount'))
+        payment_method = request.form.get('payment_method')
+
+        if not passenger_id:
+            flash("Passenger not logged in or ID missing")
+            return redirect(url_for('booking'))
+
+        sql = """
+            INSERT INTO booking (passenger_id, cruise_id, booking_date, num_passengers, total_amount, payment_method)
+            VALUES (%s, %s, CURDATE(), %s, %s, %s)
+        """
+        data = (passenger_id, cruise_id, passengers, total_amount, payment_method)
+
         cur = mysql.connection.cursor()
-        cur.execute("""
-            INSERT INTO booking (passenger_id, cruise_id, num_passengers, total_amount, payment_method)
-            VALUES (%s, %s, %s, %s, %s)
-        """, (passenger_id, cruise_id, passengers, total_amount, payment_method))
+        cur.execute(sql, data)
         mysql.connection.commit()
-        cur.close()
 
-        flash('Booking confirmed successfully!')
+        flash("Booking confirmed!")
+        return redirect(url_for('home'))
+
     except Exception as e:
-        print("DB INSERT ERROR:", e)
-        flash(f"Database error: {str(e)}")
-
-    return redirect(url_for('booking'))
-
-
+        logging.error(f"Error in confirm_payment: {e}", exc_info=True)
+        flash(f"Error: {str(e)}")
+        return redirect(url_for('payment'))
 
 
 @app.route('/feedback', methods=['GET', 'POST'])

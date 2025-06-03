@@ -65,16 +65,21 @@ h2 {
   border-radius: 6px;
   cursor: pointer;
   border: 2px solid transparent;
+  user-select: none;
 }
 
 .payment-methods input[type="radio"] {
   display: none;
 }
 
-.payment-methods input[type="radio"]:checked + label {
+/* Style the span next to the checked input */
+.payment-methods input[type="radio"]:checked + span {
   background-color: #004d61;
   color: white;
   border-color: #004d61;
+  padding: 10px 15px;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .total {

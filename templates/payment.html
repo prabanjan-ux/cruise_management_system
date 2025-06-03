@@ -7,8 +7,20 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}" />
 </head>
 <body>
+
   <div class="container">
+
     <h2>Booking Summary</h2>
+
+    <div class="info-row">
+  <label for="passenger_id">Select Passenger:</label>
+  <select name="passenger_id" id="passenger_id" required>
+    <option value="" disabled selected>Select your name</option>
+    {% for passenger in passengers %}
+      <option value="{{ passenger.passenger_id }}">{{ passenger.name }}</option>
+    {% endfor %}
+  </select>
+</div>
 
     <div class="info-row">
       <label>Cruise Name:</label>
@@ -60,11 +72,24 @@
       </div>
 
       <div class="payment-methods">
-        <p><strong>Select Payment Method:</strong></p>
-        <label><input type="radio" name="payment_method" value="UPI" checked /> UPI</label>
-        <label><input type="radio" name="payment_method" value="Credit Card" /> Credit Card</label>
-        <label><input type="radio" name="payment_method" value="Debit Card" /> Debit Card</label>
-      </div>
+  <p><strong>Select Payment Method:</strong></p>
+
+  <label>
+    <input type="radio" name="payment_method" value="UPI" checked />
+    <span>UPI</span>
+  </label>
+
+  <label>
+    <input type="radio" name="payment_method" value="Credit Card" />
+    <span>Credit Card</span>
+  </label>
+
+  <label>
+    <input type="radio" name="payment_method" value="Debit Card" />
+    <span>Debit Card</span>
+  </label>
+</div>
+
 
       <button type="submit">Confirm & Pay</button>
     </form>

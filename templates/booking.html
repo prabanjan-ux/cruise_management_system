@@ -13,9 +13,9 @@
     <header>Cruise Paradise
     <nav>
       <ul>
-        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('cruise') }}">Cruise</a></li>
-        <li><a href="{{ url_for('port') }}">Ports</a></li>
+        <li><a href="{{ url_for('passenger') }}">Passenger</a></li>
+        <li><a href="{{ url_for('booking') }}">Booking</a></li>
+        <li><a href="{{ url_for('feedback') }}">Feedback</a></li>
       </ul>
     </nav>
         <form action="{{ url_for('logout') }}" method="POST" class="logout-form">
@@ -30,7 +30,8 @@
         {% for cruise in cruises %}
         <div class="featured-cruise">
             <div class="image">
-                <img src="{{ url_for('static', filename=cruise.image_url) }}" alt="{{ cruise.cruisename }}">
+                <img src="{{ url_for('static', filename='images/' + cruise.cruisename.replace(' ', '') + '.jpg') }}" alt="{{ cruise.cruisename }}">
+
 
 
             </div>
